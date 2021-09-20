@@ -1,0 +1,35 @@
+﻿@model EmployeeCrud.ViewModels.EmployeeViewModel
+@{
+    ViewBag.Title = "EmployeeForm";
+}
+
+
+<h2>Employee Details</h2>
+<hr />
+
+
+@using (@Html.BeginForm("Save", "Employee"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.EmployeeName)
+        @Html.TextBoxFor(m => m.Employee.EmployeeName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.Email)
+        @Html.TextBoxFor(m => m.Employee.Email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.TrainingProgram)
+        @Html.TextBoxFor(m => m.Employee.TrainingProgram, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.DepartmentId)
+        @Html.DropDownListFor(m => m.Employee.DepartmentId, new SelectList(Model.Department, "DepartmentId", "DepartmentName"), "Select Department", new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.Employee.EmployeeId)
+
+    var c = @Model.Employee.EmployeeId > 0 ? "Update" : "Save";
+    <button type="submit" class="btn btn-primary">@c</button>
+}  
